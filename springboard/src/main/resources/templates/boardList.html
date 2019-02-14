@@ -24,11 +24,21 @@
 		<td>삭제</td>
 	</tr>	
 </table>
-<table>
-	<tr>
-	<td><a th:href="@{/boardList(currentPage=${currentPage-1})}" th:text="이전"></a></td><td></td><td><a th:href="@{/boardList(currentPage=${currentPage+1})}" th:text="다음"></a></td>
-	</tr>
-</table>
 
+	<a th:if="${currentPage > 0}" th:href="@{/boardList(currentPage=${currentPage-1})}" th:text="이전"></a>
+	<a th:if="${lastPage < currentPage}" th:href="@{/boardList(currentPage=${currentPage+1})}" th:text="다음"></a>
+
+<!-- 
+
+	<a th:if="${currentPage < 0}" th:href="@{/boardList(currentPage=${currentPage-1})}" th:text="이전"></a>
+	<a th:if="${lastPage > currentPage}" th:href="@{/boardList(currentPage=${currentPage+1})}" th:text="다음"></a>
+
+ -->
+<!-- <td th:if="${data.buyTime} != 0" th:text="${ddf.format(data.buyTime)}" ></td>
+
+<td th:unless="${data.buyTime} != 0">0</td>
+
+ -->
 </body>
 </html>
+

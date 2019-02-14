@@ -27,7 +27,7 @@
 				board_user as boardUser, 
 				board_date as boardDate
 			FROM board 
-			ORDER BY board_date DESC 
+			ORDER BY board_no DESC 
 			LIMIT #{currentPage}, #{rowPerPage}
 	</select>
 	<!-- DB에저장된  게시물의 수를 가져온다 -->
