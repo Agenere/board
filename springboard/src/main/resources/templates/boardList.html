@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>게시판 목록</title>
+</head>
+<body>
+<a th:text="${boardCount}"></a>
+<table>
+	<tr>
+		<td>boardNo</td>
+		<td>boardTitle</td>
+		<td>boardUser</td>
+		<td>boardDate</td>
+		<td>수정</td>
+		<td>삭제</td>
+	</tr>
+	<tr th:each="l : ${list}">
+		<td th:text="${l.boardNo}"></td>
+		<td th:text="${l.boardTitle}"></td>
+		<td th:text="${l.boardUser}"></td>
+		<td th:text="${l.boardDate}"></td>
+		<td>수정</td>
+		<td>삭제</td>
+	</tr>	
+</table>
+<table>
+	<tr>
+	<td><a th:href="@{/boardList(currentPage=${currentPage-1})}" th:text="이전"></a></td><td></td><td><a th:href="@{/boardList(currentPage=${currentPage+1})}" th:text="다음"></a></td>
+	</tr>
+</table>
+
+</body>
+</html>
