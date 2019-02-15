@@ -52,8 +52,8 @@ public class BoardService {
 		
 	}
 	
-	public int removeBoard(Board board) {
-		return boardMapper.deleteBoard(board);
+	public int removeBoard(int boardNo) {
+		return boardMapper.deleteBoard(boardNo);
 		
 	}
 	

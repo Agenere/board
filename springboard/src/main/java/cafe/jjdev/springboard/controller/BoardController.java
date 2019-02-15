@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,15 +18,10 @@ import cafe.jjdev.springboard.vo.Board;
 public class BoardController {
     @Autowired private BoardService boardService;
     
- // 글 삭제 폼 요청(비밀번호 입력 폼)
-    @GetMapping(value="/boardRemove")
-    public String boardRemove(@RequestParam(value="boardNo", required=true) int boardNo) {
-        return "boardRemove";
-    }
-    // 글 삭제 요청
-    @RequestMapping(value="/boardAdd", method = RequestMethod.POST)
-    public String boardRemove(Board board) {
-    	boardService.removeBoard(board);
+     // 글 삭제 요청
+    @PostMapping(value="/boardDelete")
+    public String boardRemove(int boardNo) {
+    	boardService.removeBoard(boardNo);
         return "redirect:/boardList";
     }
     
@@ -35,7 +31,7 @@ public class BoardController {
                             , @RequestParam(value="boardNo", required=true) int boardNo) {
         Board board = boardService.getBoard(boardNo);
         model.addAttribute("board", board);
-        return "/boardView";
+        return "boardView";
     }
     
     // 리스트 요청
@@ -67,4 +63,21 @@ public class BoardController {
         return "boardAdd";
     }
 
+    //수정페이지 요청
+    @GetMapping(value="/boardUpdate")
+    public String boardUpdate(Model model, @RequestParam int boardNo) {
+    	Board board = boardService.getBoard(boardNo);
+    	model.addAttribute("board",board);
+		return "boardUpdate";
+    	
+    }
+    
+    //수정 (액션) 요청
+    @RequestMapping(value="/boardUpdateAction", method = RequestMethod.POST)
+    public String boardUpdateAction(Board board) {
+    	boardService.modifyBoard(board);    	
+		return "redirect:/boardView?boardNo="+board.getBoardNo();
+    	
+    }
+    
 }

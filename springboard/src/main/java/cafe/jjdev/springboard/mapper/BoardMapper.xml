@@ -10,6 +10,7 @@
 			parameterType="cafe.jjdev.springboard.vo.Board" 
 			resultType="cafe.jjdev.springboard.vo.Board">
 			SELECT 
+				board_no as boardNo,
 				board_title as boardTitle, 
 				board_content as boardContent, 
 				board_user as boardUser, 
@@ -35,8 +36,7 @@
 			resultType="int">
 			SELECT 
 				COUNT(*) 
-			FROM board
-			
+			FROM board			
 	</select>
 	
 	<!-- select 를 제외한 모든 쿼리문은 resultType 이 int 로 고정 되어있다. 즉, 안써도된다  -->
@@ -67,8 +67,8 @@
 				board 
 			WHERE 
 				board_no= #{boardNo} 
-			AND 
-				board_pw= #{boardPw}
+			<!-- AND 
+				board_pw= #{boardPw} -->
 			
 	</delete>
 	<!-- DB안에 저장 되어있는 정보를 새로운 정보로 수정 해준다. -->
@@ -81,8 +81,8 @@
 				board_content= #{boardContent} 
 			WHERE 
 				board_no= #{boardNo} 
-			AND 
-				board_pw= #{boardPw}
+			<!-- AND 
+				board_pw= #{boardPw} -->
 			
 	</update>
 	
