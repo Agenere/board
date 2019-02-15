@@ -81,8 +81,8 @@
 				board_content= #{boardContent} 
 			WHERE 
 				board_no= #{boardNo} 
-			<!-- AND 
-				board_pw= #{boardPw} -->
+			AND 
+				board_pw= #{boardPw}
 			
 	</update>
 	
