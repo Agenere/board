@@ -17,7 +17,7 @@
 		</tr>
 		<tr>
 			<td th:text="boardContent"></td>
-			<td><textarea  name="boardContent" rows="20" cols="34" th:field="*{board.boardContent}" readonly="readonly"></textarea>
+			<td><textarea  name="boardContent" rows="20" cols="34" th:text="${board.boardContent}" readonly="readonly"></textarea>
 			</td>
 		</tr>
 		<tr>
