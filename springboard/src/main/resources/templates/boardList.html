@@ -24,21 +24,12 @@
 		<td>삭제</td>
 	</tr>	
 </table>
+	<a th:href="@{/boardList(currentPage=0)}" ><button th:text="처음으로"></button></a>
+	<a th:if="${currentPage > 0}" th:href="@{/boardList(currentPage=${currentPage-1})}" ><button th:text="이전"></button></a>
+	<a th:if="${lastPage >= currentPage}" th:href="@{/boardList(currentPage=${currentPage+1})}" ><button th:text="다음"></button></a>
+	<a th:href="@{/boardList(currentPage=${lastPage})}" ><button th:text="끝으로"></button></a><br/>
+	<a th:href="@{/boardAdd}" ><button th:text="글등록하기"></button></a> 
 
-	<a th:if="${currentPage > 0}" th:href="@{/boardList(currentPage=${currentPage-1})}" th:text="이전"></a>
-	<a th:if="${lastPage < currentPage}" th:href="@{/boardList(currentPage=${currentPage+1})}" th:text="다음"></a>
-
-<!-- 
-
-	<a th:if="${currentPage < 0}" th:href="@{/boardList(currentPage=${currentPage-1})}" th:text="이전"></a>
-	<a th:if="${lastPage > currentPage}" th:href="@{/boardList(currentPage=${currentPage+1})}" th:text="다음"></a>
-
- -->
-<!-- <td th:if="${data.buyTime} != 0" th:text="${ddf.format(data.buyTime)}" ></td>
-
-<td th:unless="${data.buyTime} != 0">0</td>
-
- -->
 </body>
 </html>
 
