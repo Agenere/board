@@ -27,7 +27,7 @@ public class BoardService {
 		final int ROW_PER_PAGE = 10;//뷰에 표현할 정보의 갯수
 		
 		Map<String, Integer> map = new HashMap<String,Integer>();
-		map.put("currentPage", currentPage);//현재 보여줄 페이지
+		map.put("currentPage", currentPage*ROW_PER_PAGE);//현재 보여줄 페이지
 		map.put("rowPerPage", ROW_PER_PAGE);
 		
 		//2... DB에서 받아온 값과 컨트롤러 나 뷰에서 사용할 (필요한 ) 값들을 가공하여 리턴 해준다.
