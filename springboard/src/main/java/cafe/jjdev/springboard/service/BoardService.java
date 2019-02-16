@@ -27,19 +27,20 @@ public class BoardService {
 		final int ROW_PER_PAGE = 10;//뷰에 표현할 정보의 갯수
 		
 		Map<String, Integer> map = new HashMap<String,Integer>();
-		map.put("currentPage", currentPage*ROW_PER_PAGE);//현재 보여줄 페이지
+		map.put("currentPage", (currentPage-1)*ROW_PER_PAGE);//현재 보여줄 페이지
 		map.put("rowPerPage", ROW_PER_PAGE);
 		
 		//2... DB에서 받아온 값과 컨트롤러 나 뷰에서 사용할 (필요한 ) 값들을 가공하여 리턴 해준다.
 		int boardCount = boardMapper.selectBoardCount();
-		int lastPage = (int)(Math.ceil(boardCount/ROW_PER_PAGE));
+		int lastPage = (int) Math.ceil(boardCount/ROW_PER_PAGE);//올림 해주는거 아닌가??
+		// 0으로 나누어 떨어지지 않을때 마지막 페이지를 보기 위해선 +1 을 해준다
+		if(boardCount%ROW_PER_PAGE != 0) {++lastPage;}
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		returnMap.put("list", boardMapper.selectBoardList(map));
 		returnMap.put("boardCount", boardCount);
 		returnMap.put("lastPage", lastPage);
-		return returnMap;
-		
+		return returnMap;		
 	}
 	
 	public int getBoardCount() {

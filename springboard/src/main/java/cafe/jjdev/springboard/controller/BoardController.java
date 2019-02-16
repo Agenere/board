@@ -37,7 +37,7 @@ public class BoardController {
     // 리스트 요청
     @GetMapping(value="/boardList")
     public String boardList(Model model
-                            , @RequestParam(value="currentPage", required=false, defaultValue="0") int currentPage) {
+                            , @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
     	Map<String, Object> map = boardService.selectBoardList(currentPage);
     	model.addAttribute("list",map.get("list"));
     	model.addAttribute("boardCount",map.get("boardCount"));

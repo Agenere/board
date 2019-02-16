@@ -24,12 +24,17 @@
 		<td><a th:href="@{/boardDelete(boardNo=${l.boardNo})}" ><button th:text="삭제"></button></a></td>
 	</tr>	
 </table>
-	<a th:href="@{/boardList(currentPage=0)}" ><button th:text="처음으로"></button></a>
-	<a th:if="${currentPage > 0}" th:href="@{/boardList(currentPage=${currentPage-1})}" ><button th:text="이전"></button></a>
-	<a th:if="${lastPage > currentPage}" th:href="@{/boardList(currentPage=${currentPage+1})}" ><button th:text="다음"></button></a>
-	<a th:href="@{/boardList(currentPage=${lastPage})}" ><button th:text="끝으로"></button></a><br/>
-	<a th:href="@{/boardAdd}" ><button th:text="글등록하기"></button></a> 
-
+<table>
+	<tr>
+		<td><a th:href="@{/boardList}" ><button th:text="처음으로"></button></a></td>
+		<td><a th:if="${currentPage > 0}" th:href="@{/boardList(currentPage=${currentPage-1})}" ><button th:text="이전"></button></a>	</td>
+		<td>
+		</td>
+		<td><a th:if="${lastPage > currentPage}" th:href="@{/boardList(currentPage=${currentPage+1})}" ><button th:text="다음"></button></a></td>
+		<td><a th:href="@{/boardList(currentPage=${lastPage})}" ><button th:text="끝으로"></button></a><br/></td>
+	</tr>
+</table>
+		<a th:href="@{/boardAdd}" ><button th:text="글등록하기"></button></a> 
 </body>
 </html>
 
