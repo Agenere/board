@@ -22,6 +22,7 @@ public class BoardController {
     @GetMapping(value="/boardDelete")
     public String boardRemove(int boardNo) {
     	boardService.removeBoard(boardNo);
+    	System.out.println("boardDelete = "+boardNo+" 요청");
         return "redirect:/boardList";
     }
     
@@ -31,6 +32,7 @@ public class BoardController {
                             , @RequestParam(value="boardNo", required=true) int boardNo) {
         Board board = boardService.getBoard(boardNo);
         model.addAttribute("board", board);
+        System.out.println("boardView = "+boardNo+" 요청");
         return "boardView";
     }
     
@@ -44,7 +46,7 @@ public class BoardController {
     	model.addAttribute("lastPage",map.get("lastPage"));
     	model.addAttribute("pageList", map.get("pageList"));
     	model.addAttribute("currentPage",currentPage);
-    	System.out.println("boardList 요청");
+    	System.out.println("boardList = " +currentPage+" 요청");
         return "boardList";
     }
     
@@ -53,14 +55,14 @@ public class BoardController {
     @PostMapping(value="/boardAddAction")
     public String boardAdd(Board board) {
         boardService.addBoard(board);
-        System.out.println("boardAdd 액션 요청");
+        System.out.println("boardAddAction 요청");
         return "redirect:/boardList"; // 글입력후 "/boardList"로 리다이렉트(재요청)
     }
     
     // 입력페이지 요청
     @GetMapping(value="/boardAdd")
     public String boardAdd() {
-        System.out.println("boardAdd 폼 요청");
+        System.out.println("boardAdd 요청");
         return "boardAdd";
     }
 
@@ -69,16 +71,18 @@ public class BoardController {
     public String boardUpdate(Model model, @RequestParam int boardNo) {
     	Board board = boardService.getBoard(boardNo);
     	model.addAttribute("board",board);
+    	System.out.println("boardUpdate = "+boardNo+" 요청");
 		return "boardUpdate";
-    	
+   	
     }
     
     //수정 (액션) 요청
     @PostMapping(value="/boardUpdateAction")
     public String boardUpdateAction(Board board) {
-    	boardService.modifyBoard(board);    	
-		return "redirect:/boardView?boardNo="+board.getBoardNo();
-    	
+    	boardService.modifyBoard(board); 
+    	System.out.println("boardUpdateAction 요청");
+    	//수정 완료후 수정된 화면을 boardView에서 확인 하기위해 boardNo값을 같이 리턴 한다.
+		return "redirect:/boardView?boardNo="+board.getBoardNo();   	
     }
     
 }
