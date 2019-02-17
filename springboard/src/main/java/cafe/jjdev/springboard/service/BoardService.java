@@ -36,10 +36,21 @@ public class BoardService {
 		// 0으로 나누어 떨어지지 않을때 마지막 페이지를 보기 위해선 +1 을 해준다
 		if(boardCount%ROW_PER_PAGE != 0) {++lastPage;}
 		
+		int[] pageList = new int[10];
+		for (int i = 0 ; i<10 ; i++) {
+			if(currentPage > ROW_PER_PAGE/2) {
+				pageList[i] = i+(currentPage-((ROW_PER_PAGE/2)-1));
+			}else {
+				pageList[i] = i+1;
+			}
+		}
+		
+		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		returnMap.put("list", boardMapper.selectBoardList(map));
 		returnMap.put("boardCount", boardCount);
 		returnMap.put("lastPage", lastPage);
+		returnMap.put("pageList", pageList);
 		return returnMap;		
 	}
 	

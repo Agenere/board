@@ -42,6 +42,7 @@ public class BoardController {
     	model.addAttribute("list",map.get("list"));
     	model.addAttribute("boardCount",map.get("boardCount"));
     	model.addAttribute("lastPage",map.get("lastPage"));
+    	model.addAttribute("pageList", map.get("pageList"));
     	model.addAttribute("currentPage",currentPage);
     	System.out.println("boardList 요청");
         return "boardList";
