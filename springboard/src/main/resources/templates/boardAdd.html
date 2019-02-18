@@ -2,39 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 <title>게시글 입력 화면</title>
 </head>
 <body>
-<a th:href="@{/boardList}"><button th:text="글목록보기"></button></a>
+<div class="container">
+<h2>Board 입력 화면</h2>
+<a th:href="@{/boardList}"><button th:text="글목록보기" class="btn btn-primary"></button></a>
 <form action="/boardAddAction" method="post">
-	<table>
+	<table class="table">
 		<tr>
-			<td th:text="boardPw"></td>
-			<td><input type="text" name="boardPw" size="30"></td>
+			<th th:text="boardPw"></th>
+			<td><input type="text" name="boardPw" class="form-control"></td>
 		</tr>
 		<tr>
-			<td th:text="boardTitle"></td>
-			<td><input type="text" name="boardTitle" size="30"></td>
+			<th th:text="boardTitle"></th>
+			<td><input type="text" name="boardTitle" class="form-control"></td>
 		</tr>
 		<tr>
-			<td th:text="boardContent"></td>
-			<td><textarea name="boardContent" rows="10" cols="31"></textarea>
+			<th th:text="boardContent"></th>
+			<td><textarea name="boardContent" rows="10" class="form-control"></textarea>
 			</td>
 		</tr>
 		<tr>
-			<td th:text="Name"></td>
-			<td><input type="text" name="boardUser" size="30"></td>
+			<th th:text="Name"></th>
+			<td><input type="text" name="boardUser" class="form-control"></td>
 		</tr>
 		<tr>
 		<td></td>
 		<th>
-			<input th:value="글입력" type="submit">
-			<input th:value="초기화" type="reset"> 
+			<input th:value="글입력" type="submit" class="btn btn-primary">
+			<input th:value="초기화" type="reset" class="btn btn-primary"> 
 		</th>
 		</tr>	
 	</table>
 		
 </form>
-
+</div>
 </body>
 </html>

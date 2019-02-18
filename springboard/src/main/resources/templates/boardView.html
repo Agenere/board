@@ -6,40 +6,37 @@
 <title>게시글 상세 화면</title>
 </head>
 <body class="container">
+<h2>Board 상세화면</h2>
+<a th:href="@{/boardList}"><button th:text="글목록보기" type="button" class="btn btn-primary"></button></a>
 <div class="form-group">
-<a th:href="@{/boardList}"><button th:text="글목록보기" type="button"></button></a>
-	<table>
+	<table class="table">
 		<tr>
-			<td th:text="boardNo"></td>
+			<th th:text="boardNo"></th>
 			<td><input th:value="${board.boardNo}" type="text" name="boardNo" size="35" readonly="readonly" class="form-control form-control"></td>
 		</tr>
 		<tr>
-			<td th:text="boardTitle"></td>
+			<th th:text="boardTitle"></th>
 			<td><input th:value="${board.boardTitle}" type="text" name="boardTitle" size="35" readonly="readonly" class="form-control form-control"></td>
 		</tr>
 		<tr>
-			<td th:text="boardContent"></td>
+			<th th:text="boardContent"></th>
 			<td><textarea  name="boardContent" rows="20" cols="34" th:text="${board.boardContent}" readonly="readonly" class="form-control form-control"></textarea>
 			</td>
 		</tr>
 		<tr>
-			<td th:text="Name"></td>
+			<th th:text="Name"></th>
 			<td><input th:value="${board.boardUser}" type="text" name="boardUser" size="35" readonly="readonly" class="form-control form-control"></td>
 		</tr>
 		<tr>
-			<td th:text="boardDate"></td>
+			<th th:text="boardDate"></th>
 			<td><input th:value="${board.boardDate}" type="text" name="boardDate" size="35" readonly="readonly" class="form-control form-control"></td>
 		</tr>
 		<tr>
-			<td> <!-- 이전글 다음글 만들려고 했는데 마지막 게시글의 넘버를 받아와야해서 그냥 안하기로 함 ㅎㅎ
-				그리고 삭제시 연속성이 사라지기 때문에.. 지금은 리스트 출력하듯 limit로 3를 받아와 출력시키는 것 말곤 생각 이 안난다 거기다 조건식 3개 랑..첫글 마지막글..
-				자바 스크립트를 배우면?? 이전 페이지 나 다음페이지에 대한 유효성 검사가 가능 하다면 가능 할것 같다.
-				<a th:if="${boardNo > lastNo}" th:href="@{/boardView(boardNo=${boardNo+1})}" ><button th:text="이전글"></button></a>
-				<a th:if="${boardNo > 0}" th:href="@{/boardView(boardNo=${boardNo-1})}" ><button th:text="다음글"></button></a>
-			 --></td>
+			<th></th>
 			<th>
-				<a th:href="@{/boardUpdate(boardNo=${board.boardNo})}" ><button th:text="수정하러가기" class="btn btn-outline-info"></button></a>
-				<a th:href="@{/boardAdd}" ><button th:text="새글쓰러가기" class="btn btn-outline-info"></button></a> 
+				<a th:href="@{/boardUpdate(boardNo=${board.boardNo})}" ><button th:text="수정하러가기" class="btn btn-primary"></button></a>
+				<a th:href="@{/boardDelete(boardNo=${board.boardNo})}" ><button th:text="삭제하러가기" class="btn btn-primary"></button></a>
+				<a th:href="@{/boardAdd}" ><button th:text="새글쓰러가기" class="btn btn-primary"></button></a> 
 			</th>
 		</tr>	
 	</table>

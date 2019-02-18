@@ -6,40 +6,41 @@
 <title>게시글 수정 화면</title>
 </head>
 <body class="container">
-<a th:href="@{/boardList}"><button th:text="글목록보기" type="button" class="btn btn-outline-info"></button></a>
+<h2>Board 수정 화면</h2>
+<a th:href="@{/boardList}"><button th:text="글목록보기" type="button" class="btn btn-primary"></button></a>
 <form action="/boardUpdateAction" method="post">
 	<div class="form-group">
-	<table>
+	<table class="table">
 		<tr>
-			<td th:text="boardNo"></td>
+			<th th:text="boardNo"></th>
 			<td><input th:value="${board.boardNo}" type="text" size="50" name="boardNo" readonly="readonly" class="form-control form-control"></td>
 		</tr>
 		<tr>
-			<td th:text="boardTitle"></td>
+			<th th:text="boardTitle"></th>
 			<td><input th:value="${board.boardTitle}" type="text" name="boardTitle" class="form-control form-control"></td>
 		</tr>
 		<tr>
-			<td th:text="boardContent"></td>
+			<th th:text="boardContent"></th>
 			<td><textarea  name="boardContent" rows="10"  th:text="${board.boardContent}" class="form-control form-control"></textarea>
 			</td>
 		</tr>
 		<tr>
-			<td th:text="Name"></td>
+			<th th:text="Name"></th>
 			<td><input th:value="${board.boardUser}" type="text" name="boardUser" readonly="readonly" class="form-control form-control"></td>
 		</tr>
 		<tr>
-			<td th:text="boardDate"></td>
+			<th th:text="boardDate"></th>
 			<td><input th:value="${board.boardDate}" type="text" name="boardDate" readonly="readonly" class="form-control form-control"></td>
 		</tr>
 		<tr>
-			<td th:text="boardPw"></td>
+			<th th:text="boardPw"></th>
 			<td><input type="password" name="boardPw" size="50"placeholder="비번이 일치 해야만 수정이 가능합니다"></td>
 		</tr>
 		<tr>
 		<td></td>
 		<th>
-			<input th:value="수정하기" type="submit" class="btn btn-outline-info">
-			<input th:value="초기화" type="reset" class="btn btn-outline-info"> 
+			<input th:value="수정하기" type="submit" class="btn btn-primary">
+			<input th:value="초기화" type="reset" class="btn btn-primary"> 
 		</th>
 		</tr>	
 	</table>

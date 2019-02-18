@@ -7,8 +7,9 @@
 </head>
 <body>
 <div class="container">
-<a th:text="${boardCount}"></a>
+<h2>Board List</h2>
 <div class="table-responsive">
+<a> <span>전체 게시글 수 : </span> <span th:text="${boardCount}"></span></a>
 <table class="table">
 	<tr>
 		<th>boardNo</th>
@@ -37,7 +38,7 @@
 		<td><a th:href="@{/boardList(currentPage=${lastPage})}" ><button th:text="끝으로" type="button" class="btn btn-outline-primary"></button></a><br/></td>
 	</tr>
 </table>
-		<a th:href="@{/boardAdd}" ><button th:text="글등록하기" type="button" class="btn btn-outline-info"></button></a>
+		<a th:href="@{/boardAdd}" ><button th:text="글등록하기" type="button" class="btn btn-primary"></button></a>
 </div>
 </div>
 </body>

@@ -2,14 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 <title>보드 삭제 폼</title>
 </head>
-<body>
-	<form action="boardDeleteAction" method="post">
-		글 번호: <input th:value="${boardNo}" type="text" name="boardNo" readonly="readonly"><br><br>
-		비밀번호를 입력해 주세요. <input type="password" name="boardPw"><br><br>
-			<input type="submit" value="글 삭제">
+<body class="container">
+<h2>Board 삭제 확인 화면</h2>
+<a th:href="@{/boardList}"><button th:text="글목록보기" type="button" class="btn btn-primary"></button></a>
+<div class="form-group">
+<form action="boardDeleteAction" method="post">
+	<table class="table">
+		<tr>
+			<th>Board No</th>
+			<td><input th:value="${boardNo}" type="text" name="boardNo" readonly="readonly" class="form-control form-control"></td>
+		</tr>
+		<tr>
+			<th>Board Pw</th>
+			<td><input type="password" name="boardPw" class="form-control form-control"></td>
+		</tr>
+	</table>
+			<input type="submit" value="글 삭제 하기" class="btn btn-primary">
 	</form>
-	<a th:href="@{/boardList}"><button>리스트로 돌아가기</button></a>
+	</div>
 </body>
 </html>
