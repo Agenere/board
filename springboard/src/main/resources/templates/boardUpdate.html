@@ -2,45 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 <title>게시글 수정 화면</title>
 </head>
-<body>
-<a th:href="@{/boardList}"><button th:text="글목록보기"></button></a>
+<body class="container">
+<a th:href="@{/boardList}"><button th:text="글목록보기" type="button" class="btn btn-outline-info"></button></a>
 <form action="/boardUpdateAction" method="post">
+	<div class="form-group">
 	<table>
 		<tr>
 			<td th:text="boardNo"></td>
-			<td><input th:value="${board.boardNo}" type="text" name="boardNo" size="30" readonly="readonly"></td>
+			<td><input th:value="${board.boardNo}" type="text" size="50" name="boardNo" readonly="readonly" class="form-control form-control"></td>
 		</tr>
 		<tr>
 			<td th:text="boardTitle"></td>
-			<td><input th:value="${board.boardTitle}" type="text" name="boardTitle" size="30"></td>
+			<td><input th:value="${board.boardTitle}" type="text" name="boardTitle" class="form-control form-control"></td>
 		</tr>
 		<tr>
 			<td th:text="boardContent"></td>
-			<td><textarea  name="boardContent" rows="10" cols="31" th:text="${board.boardContent}"></textarea>
+			<td><textarea  name="boardContent" rows="10"  th:text="${board.boardContent}" class="form-control form-control"></textarea>
 			</td>
 		</tr>
 		<tr>
 			<td th:text="Name"></td>
-			<td><input th:value="${board.boardUser}" type="text" name="boardUser" size="30" readonly="readonly"></td>
+			<td><input th:value="${board.boardUser}" type="text" name="boardUser" readonly="readonly" class="form-control form-control"></td>
 		</tr>
 		<tr>
 			<td th:text="boardDate"></td>
-			<td><input th:value="${board.boardDate}" type="text" name="boardDate" size="30" readonly="readonly"></td>
+			<td><input th:value="${board.boardDate}" type="text" name="boardDate" readonly="readonly" class="form-control form-control"></td>
 		</tr>
 		<tr>
 			<td th:text="boardPw"></td>
-			<td><input type="password" name="boardPw" size="30"></td>
+			<td><input type="password" name="boardPw" size="50"placeholder="비번이 일치 해야만 수정이 가능합니다"></td>
 		</tr>
 		<tr>
 		<td></td>
 		<th>
-			<input th:value="수정하기" type="submit">
-			<input th:value="초기화" type="reset"> 
+			<input th:value="수정하기" type="submit" class="btn btn-outline-info">
+			<input th:value="초기화" type="reset" class="btn btn-outline-info"> 
 		</th>
 		</tr>	
 	</table>
+	</div>
 		
 </form>
 

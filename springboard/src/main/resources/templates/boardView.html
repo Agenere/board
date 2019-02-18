@@ -2,31 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 <title>게시글 상세 화면</title>
 </head>
-<body>
-<a th:href="@{/boardList}"><button th:text="글목록보기"></button></a>
+<body class="container">
+<div class="form-group">
+<a th:href="@{/boardList}"><button th:text="글목록보기" type="button"></button></a>
 	<table>
 		<tr>
 			<td th:text="boardNo"></td>
-			<td><input th:value="${board.boardNo}" type="text" name="boardNo" size="35" readonly="readonly"></td>
+			<td><input th:value="${board.boardNo}" type="text" name="boardNo" size="35" readonly="readonly" class="form-control form-control"></td>
 		</tr>
 		<tr>
 			<td th:text="boardTitle"></td>
-			<td><input th:value="${board.boardTitle}" type="text" name="boardTitle" size="35" readonly="readonly"></td>
+			<td><input th:value="${board.boardTitle}" type="text" name="boardTitle" size="35" readonly="readonly" class="form-control form-control"></td>
 		</tr>
 		<tr>
 			<td th:text="boardContent"></td>
-			<td><textarea  name="boardContent" rows="20" cols="34" th:text="${board.boardContent}" readonly="readonly"></textarea>
+			<td><textarea  name="boardContent" rows="20" cols="34" th:text="${board.boardContent}" readonly="readonly" class="form-control form-control"></textarea>
 			</td>
 		</tr>
 		<tr>
 			<td th:text="Name"></td>
-			<td><input th:value="${board.boardUser}" type="text" name="boardUser" size="35" readonly="readonly"></td>
+			<td><input th:value="${board.boardUser}" type="text" name="boardUser" size="35" readonly="readonly" class="form-control form-control"></td>
 		</tr>
 		<tr>
 			<td th:text="boardDate"></td>
-			<td><input th:value="${board.boardDate}" type="text" name="boardDate" size="35" readonly="readonly"></td>
+			<td><input th:value="${board.boardDate}" type="text" name="boardDate" size="35" readonly="readonly" class="form-control form-control"></td>
 		</tr>
 		<tr>
 			<td> <!-- 이전글 다음글 만들려고 했는데 마지막 게시글의 넘버를 받아와야해서 그냥 안하기로 함 ㅎㅎ
@@ -36,11 +38,11 @@
 				<a th:if="${boardNo > 0}" th:href="@{/boardView(boardNo=${boardNo-1})}" ><button th:text="다음글"></button></a>
 			 --></td>
 			<th>
-				<a th:href="@{/boardUpdate(boardNo=${board.boardNo})}" ><button th:text="수정하러가기"></button></a>
-				<a th:href="@{/boardAdd}" ><button th:text="새글쓰로가기"></button></a> 
+				<a th:href="@{/boardUpdate(boardNo=${board.boardNo})}" ><button th:text="수정하러가기" class="btn btn-outline-info"></button></a>
+				<a th:href="@{/boardAdd}" ><button th:text="새글쓰러가기" class="btn btn-outline-info"></button></a> 
 			</th>
 		</tr>	
 	</table>
-
+</div>
 </body>
 </html>
