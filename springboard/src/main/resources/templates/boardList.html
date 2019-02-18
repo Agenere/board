@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
 <title>게시판 목록</title>
 </head>
 <body>
@@ -26,16 +27,16 @@
 </table>
 <table class="table">
 	<tr>
-		<td><a th:href="@{/boardList}" ><button th:text="처음으로" type="button" class="btn btn-outline-primary"></button></a></td>
-		<td><a th:if="${currentPage > 1}" th:href="@{/boardList(currentPage=${currentPage-1})}" ><button th:text="이전" type="button" class="btn btn-outline-info"></button></a>	</td>
+		<td><a th:href="@{/boardList}" ><button th:text="처음" type="button" class="btn btn-outline-primary btn-sm"></button></a></td>
+		<td><a th:if="${currentPage > 1}" th:href="@{/boardList(currentPage=${currentPage-1})}" ><button th:text="이전" type="button" class="btn btn-outline-info btn-sm"></button></a>	</td>
 		<td th:each="p : ${pageList}">
 		<th:block th:if="${lastPage >= p}">
-		<a th:if="${currentPage == p}"><button th:text="${p}" type="button" class="btn btn-outline-light text-dark"></button> </a>
-		<a th:unless="${currentPage == p}" th:href="@{/boardList(currentPage=${p})}" ><button th:text="${p}" type="button" class="btn btn-outline-secondary"></button></a>
+		<a th:if="${currentPage == p}"><button th:text="${p}" type="button" class="btn btn-outline-light text-dark btn-sm"></button> </a>
+		<a th:unless="${currentPage == p}" th:href="@{/boardList(currentPage=${p})}" ><button th:text="${p}" type="button" class="btn btn-outline-secondary btn-sm"></button></a>
 		</th:block>
 		</td>
-		<td><a th:if="${lastPage > currentPage}" th:href="@{/boardList(currentPage=${currentPage+1})}" ><button th:text="다음" type="button" class="btn btn-outline-info"></button></a></td>
-		<td><a th:href="@{/boardList(currentPage=${lastPage})}" ><button th:text="끝으로" type="button" class="btn btn-outline-primary"></button></a><br/></td>
+		<td><a th:if="${lastPage > currentPage}" th:href="@{/boardList(currentPage=${currentPage+1})}" ><button th:text="다음" type="button" class="btn btn-outline-info btn-sm"></button></a></td>
+		<td><a th:href="@{/boardList(currentPage=${lastPage})}" ><button th:text="끝" type="button" class="btn btn-outline-primary btn-sm"></button></a><br/></td>
 	</tr>
 </table>
 		<a th:href="@{/boardAdd}" ><button th:text="글등록하기" type="button" class="btn btn-primary"></button></a>

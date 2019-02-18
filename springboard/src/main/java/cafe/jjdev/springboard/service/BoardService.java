@@ -45,8 +45,7 @@ public class BoardService {
 			}else {
 				pageList[i] = i+1;
 			}
-		}
-		
+		}		
 		//view 에서 필요한 값을 모두 보내기위해 Map에 모두 상주 시킨후 리턴시킨다.
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		returnMap.put("list", boardMapper.selectBoardList(map));

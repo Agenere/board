@@ -3,35 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    /* 입력폼 유효성 관련 요구사항
+        1. 모든 폼은 공백 또는 "" 문자는 입력되면 안된다.
+        2. 비밀번호는 4자이상 입력하여야 한다.
+        //id에 선언된 값과 일치되는 조건이 실행된다.
+    */
+    $(document).ready(function(){
+        $('#addButton').click(function(){
+        	$('#addForm').submit(function(event){
+        		if($('#boardPw').val().length<4){
+	            	$('#boardPw').attr('placeholder','pw는 4자리 이상 수정,삭제시 필요합니다.');
+	            	$('#boardPw').focus();
+	            	return false;
+	            }else if($('#boardTitle').val().length<1){
+	            	$('#boardTitle').attr('placeholder','제목을 입력해주세요.');
+	            	$('#boardTitle').focus();
+	            	return false;
+	            }else if($('#boardContent').val().length<1){
+	            	$('#boardContent').attr('placeholder','내용을 입력해 주세요');
+	            	$('#boardContent').focus();
+	            	return false;
+	            }else if($('#boardUser').val().length<1){
+	            	$('#boardUser').attr('placeholder','작성자를 입력해주세요');
+	            	$('#boardUser').focus();
+	            	return false;
+	            }
+        	});
+        });
+    });
+</script>
 <title>게시글 입력 화면</title>
 </head>
 <body>
 <div class="container">
 <h2>Board 입력 화면</h2>
 <a th:href="@{/boardList}"><button th:text="글목록보기" class="btn btn-primary"></button></a>
-<form action="/boardAddAction" method="post">
+<form action="/boardAddAction" method="post" id="addForm">
 	<table class="table">
 		<tr>
 			<th th:text="boardPw"></th>
-			<td><input type="text" name="boardPw" class="form-control"></td>
+			<td><input type="text" id="boardPw" value="" name="boardPw" class="form-control"></td>
 		</tr>
 		<tr>
 			<th th:text="boardTitle"></th>
-			<td><input type="text" name="boardTitle" class="form-control"></td>
+			<td><input type="text" id="boardTitle" value="" name="boardTitle" class="form-control"></td>
 		</tr>
 		<tr>
 			<th th:text="boardContent"></th>
-			<td><textarea name="boardContent" rows="10" class="form-control"></textarea>
+			<td><textarea name="boardContent" id="boardContent" rows="10" class="form-control"></textarea>
 			</td>
 		</tr>
 		<tr>
 			<th th:text="Name"></th>
-			<td><input type="text" name="boardUser" class="form-control"></td>
+			<td><input type="text" id="boardUser" value="" name="boardUser" class="form-control"></td>
 		</tr>
 		<tr>
 		<td></td>
 		<th>
-			<input th:value="글입력" type="submit" class="btn btn-primary">
+			<input th:value="글입력" id="addButton" type="submit" class="btn btn-primary">
 			<input th:value="초기화" type="reset" class="btn btn-primary"> 
 		</th>
 		</tr>	
