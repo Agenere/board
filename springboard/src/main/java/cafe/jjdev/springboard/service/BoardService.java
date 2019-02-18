@@ -27,8 +27,8 @@ public class BoardService {
 		final int ROW_PER_PAGE = 10;//뷰에 표현할 정보의 갯수
 		
 		Map<String, Integer> map = new HashMap<String,Integer>();
-		map.put("currentPage", (currentPage-1)*ROW_PER_PAGE);//현재 보여줄 페이지
-		map.put("rowPerPage", ROW_PER_PAGE);
+		map.put("currentPage", (currentPage-1)*ROW_PER_PAGE);//현재 보여줄 페이지의 첫번째 게시글
+		map.put("rowPerPage", ROW_PER_PAGE);//부터 10개 출력
 		
 		//2... DB에서 받아온 값과 컨트롤러 나 뷰에서 사용할 (필요한 ) 값들을 가공하여 리턴 해준다.
 		int boardCount = boardMapper.selectBoardCount();
@@ -68,8 +68,8 @@ public class BoardService {
 		
 	}
 	//원하는 게시글을 삭제 한다
-	public int removeBoard(int boardNo) {
-		return boardMapper.deleteBoard(boardNo);
+	public int removeBoard(Board board) {
+		return boardMapper.deleteBoard(board);
 		
 	}
 	//원하는 게시글을 수정한다

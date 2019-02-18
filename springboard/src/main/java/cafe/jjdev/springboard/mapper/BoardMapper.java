@@ -24,7 +24,7 @@ public interface BoardMapper {
 
 	//DB에 원하는 정보를 삭제 하기위해 필요한 정보를 Board vo 에 셋팅에 입력 해준다.
 	//(int boardNo, String boardPw)
-	int deleteBoard(int boardNo);
+	int deleteBoard(Board board);
 	
 	//DB에 화면에서 입력 받은 값을 수정 하기위한 값이 셋팅된 Board vo 를 매개변수로 입력 해주준다.
 	int updateBoard(Board board);

@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cafe.jjdev.springboard.service.BoardService;
@@ -18,18 +16,26 @@ import cafe.jjdev.springboard.vo.Board;
 public class BoardController {
     @Autowired private BoardService boardService;
     
-     // 글 삭제 요청
+    //글 삭제 화면 요청
     @GetMapping(value="/boardDelete")
-    public String boardRemove(int boardNo) {
-    	boardService.removeBoard(boardNo);
+    public String boardRemove(Model model, @RequestParam int boardNo) {
     	System.out.println("boardDelete = "+boardNo+" 요청");
+        model.addAttribute("boardNo", boardNo);
+		return "boardDelete";	
+    }
+    
+     // 글 삭제 요청
+    @PostMapping(value="/boardDeleteAction")
+    public String boardRemove(Board board) {
+    	boardService.removeBoard(board);
+    	System.out.println("boardDelete 요청");
         return "redirect:/boardList";
     }
     
     // 글 상세 내용 요청 
     @GetMapping(value="/boardView")
     public String boardView(Model model
-                            , @RequestParam(value="boardNo", required=true) int boardNo) {
+                            , @RequestParam int boardNo) {
         Board board = boardService.getBoard(boardNo);
         model.addAttribute("board", board);
         System.out.println("boardView = "+boardNo+" 요청");
@@ -40,6 +46,7 @@ public class BoardController {
     @GetMapping(value="/boardList")
     public String boardList(Model model
                             , @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+    						//currentPage 에 담긴 값이 없을때 1 값을 넣어준다...
     	Map<String, Object> map = boardService.selectBoardList(currentPage);
     	model.addAttribute("list",map.get("list"));
     	model.addAttribute("boardCount",map.get("boardCount"));

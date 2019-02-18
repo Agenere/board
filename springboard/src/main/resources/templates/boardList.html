@@ -29,7 +29,10 @@
 		<td><a th:href="@{/boardList}" ><button th:text="처음으로"></button></a></td>
 		<td><a th:if="${currentPage > 1}" th:href="@{/boardList(currentPage=${currentPage-1})}" ><button th:text="이전"></button></a>	</td>
 		<td th:each="p : ${pageList}">
-		<a th:if="${lastPage >= p}" th:href="@{/boardList(currentPage=${p})}" ><button th:text="${p}"></button></a>
+		<th:block th:if="${lastPage >= p}">
+		<a th:if="${currentPage == p}" th:text="${p}"></a>
+		<a th:unless="${currentPage == p}" th:href="@{/boardList(currentPage=${p})}" ><button th:text="${p}"></button></a>
+		</th:block>
 		</td>
 		<td><a th:if="${lastPage > currentPage}" th:href="@{/boardList(currentPage=${currentPage+1})}" ><button th:text="다음"></button></a></td>
 		<td><a th:href="@{/boardList(currentPage=${lastPage})}" ><button th:text="끝으로"></button></a><br/></td>

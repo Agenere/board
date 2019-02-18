@@ -67,8 +67,8 @@
 				board 
 			WHERE 
 				board_no= #{boardNo} 
-			<!-- AND 
-				board_pw= #{boardPw} -->
+			AND 
+				board_pw= #{boardPw}
 			
 	</delete>
 	<!-- DB안에 저장 되어있는 정보를 새로운 정보로 수정 해준다. -->
