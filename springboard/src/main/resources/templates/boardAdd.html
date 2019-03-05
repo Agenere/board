@@ -29,44 +29,26 @@
 	            	$('#boardUser').attr('placeholder','작성자를 입력해주세요');
 	            	$('#boardUser').focus();
 	            	return false;
-	            }else if(!confirm('글작성을 하시겠습니까?')){
-	            	return false;
 	            }
         	});
         });
-        
-        $('#execute').click(function(){
-            $.ajax({
-                url:'/boardList',
-                success:function(data){
-                	if( $('#callback_list').html() != ''){
-                		 $('#callback_list').html('');
-                	}else{
-                    $('#callback_list').html(data);}
-                }
-            })
-        })
-        
-        
     });
-   
 </script>
-<div id="callback_list"></div>
 <title>게시글 입력 화면</title>
 </head>
 <body>
 <div class="container">
-<h2 id='execute'>Board 입력 화면</h2>
+<h2>Board 입력 화면</h2>
 <a th:href="@{/boardList}"><button th:text="글목록보기" class="btn btn-primary"></button></a>
-<form  action="/boardAddAction" method="post" id="addForm">
+<form th:action="@{/boardAddAction}" method="post" id="addForm" enctype="multipart/form-data">
 	<table class="table">
 		<tr>
 			<th th:text="boardPw"></th>
-			<td><input type="text" id="boardPw" value="" name="boardPw" class="form-control"></td>
+			<td><input type="text" id="boardPw"  name="boardPw" class="form-control"></td>
 		</tr>
 		<tr>
 			<th th:text="boardTitle"></th>
-			<td><input type="text" id="boardTitle" value="" name="boardTitle" class="form-control"></td>
+			<td><input type="text" id="boardTitle"  name="boardTitle" class="form-control"></td>
 		</tr>
 		<tr>
 			<th th:text="boardContent"></th>
@@ -75,10 +57,15 @@
 		</tr>
 		<tr>
 			<th th:text="Name"></th>
-			<td><input type="text" id="boardUser" value="" name="boardUser" class="form-control"></td>
+			<td><input type="text" id="boardUser"  name="boardUser" class="form-control"></td>
 		</tr>
 		<tr>
-		<td></td>
+			<th th:text="Files"></th>
+			<td><input type="file" id="boardfiles"  name="files" class="form-control"></td>
+		</tr>
+		<tr>
+		<td>		
+		</td>
 		<th>
 			<input th:value="글입력" id="addButton" type="submit" class="btn btn-primary">
 			<input th:value="초기화" type="reset" class="btn btn-primary"> 

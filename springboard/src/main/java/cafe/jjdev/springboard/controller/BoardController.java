@@ -1,6 +1,9 @@
 package cafe.jjdev.springboard.controller;
 
+import java.io.IOException;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,9 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import cafe.jjdev.springboard.service.BoardService;
 import cafe.jjdev.springboard.vo.Board;
+import cafe.jjdev.springboard.vo.BoardRequest;
 
 @Controller
 public class BoardController {
@@ -58,11 +61,16 @@ public class BoardController {
     }
     
     
-    // 입력(액션) 요청
+    // 입력(액션) 요청 //파일도 입력 받아 DB에(맞게) 저장 하기
     @PostMapping(value="/boardAddAction")
-    public String boardAdd(Board board) {
-        boardService.addBoard(board);
+    public String boardAdd(BoardRequest boardRequest, HttpSession session) throws IllegalStateException, IOException {
+    	//1.board안에 fileList를 분해해 DB의 에 들어갈수 있는 형태로 만든다 (boardfile 로 맞춰 넣어준다)
+        //2. 파일저장 : 파일경로....(동적인 경로(파일만 따 로 저장할 공간))
+    	String path = session.getServletContext().getRealPath("/uplode");
+    	System.out.println("주소->"+path);
+    	boardService.addBoard(boardRequest,path);
         System.out.println("boardAddAction 요청");
+        
         return "redirect:/boardList"; // 글입력후 "/boardList"로 리다이렉트(재요청)
     }
     

@@ -8,7 +8,7 @@
 <body class="container">
 <h2>Board 수정 화면</h2>
 <a th:href="@{/boardList}"><button th:text="글목록보기" type="button" class="btn btn-primary"></button></a>
-<form action="/boardUpdateAction" method="post">
+<form th:action="@{/boardUpdateAction}" method="post">
 	<div class="form-group">
 	<table class="table">
 		<tr>

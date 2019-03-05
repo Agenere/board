@@ -9,7 +9,7 @@
 <h2>Board 삭제 확인 화면</h2>
 <a th:href="@{/boardList}"><button th:text="글목록보기" type="button" class="btn btn-primary"></button></a>
 <div class="form-group">
-<form action="boardDeleteAction" method="post">
+<form th:action="@{/boardDeleteAction}" method="post">
 	<table class="table">
 		<tr>
 			<th>Board No</th>
